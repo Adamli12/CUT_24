@@ -1,0 +1,40 @@
+embedding_size: 64
+alpha: 0.2                        # (float) ratio of source domain loss in the final loss term
+lambda: 0                         # (float) source reg loss weight
+gamma: 0                          # (float) target reg loss weight
+delta: 1e-5
+transform_weight: 1               #weight term on the transform matrix residual
+#delta: 0
+#delta: 1e-5
+cosine_threshold: 0.6
+checkpoint_dir: saved
+weight_decay: 1e-6
+user_transform: 1                 # (int) 0 for no user transformation matrix, 1 for opposite.
+loss_term: 1                      # (int) 0 for no contrastive loss; 1 for supervised contrastive loss; 2 for simplified version, which does not work.
+loss_type: BPR                    # (str) CE or BPR, this indicates the input_type of the model when input_type is not specified by the model
+#train_epochs: ["TARGET:300","SOURCE:0","BOTH:20","BOTH:20","BOTH:20","BOTH:20","BOTH:20","BOTH:20","BOTH:20","BOTH:20","BOTH:20","BOTH:20","BOTH:20","BOTH:20"]
+train_epochs: ["TARGET:800","SOURCE:0","BOTH:800"]
+joint_learning: 1
+additional_user_samp: 0
+raw_embedding_loss: 1
+sim_emb_name: 'sim_emb_sports_target_gcn1.pkl'
+
+train_neg_sample_args:
+  distribution: uniform
+  sample_num: 1
+  alpha: 1.0
+
+single_model:          # (dict) config of the backbone single model
+  name: LightGCN       #remember to change sample_num
+  n_layers: 1
+
+  #name: MF
+
+  #name: SimpleX
+  margin: 0.5                     # (float) The margin to filter negative samples. Range in [-1, 1].
+  #negative_weight: 10             # (int) Weight to balance between positive-sample and negative-sample loss. 
+  #gamma: 0.5                      # (float) Weight for fusion of user' and interacted items' representations.
+  #aggregator: 'self_attention'    # (str) The item aggregator ranging in ['mean', 'user_attention', 'self_attention'].
+  #history_len: 50                 # (int) The length of the user's historical interaction items.
+  require_pow: False                # (bool) Whether or not to perform power operation in EmbLoss.
+  reg_weight: 0                   # (float) The L2 regularization weights.
