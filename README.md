@@ -9,10 +9,10 @@ python run_cut.py
 
 For Example, place the [Amazon](https://recbole.s3-accelerate.amazonaws.com/CrossDomain/Amazon.zip) Cloth dataset in the following directory: 
 
+```
 dataset/Amazon/AmazonCloth/AmazonCloth.inter
-
 dataset/Amazon/AmazonCloth/AmazonCloth.item
-
+```
 
 # Requirements
 
